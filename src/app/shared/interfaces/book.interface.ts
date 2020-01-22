@@ -1,6 +1,6 @@
 import { ID } from '@datorama/akita';
 
-export interface Book {
+export interface IBook {
   id: ID;
   name: string;
   author: string;

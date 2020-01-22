@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BooksService } from './core/services';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
   `,
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'my-app';
+  constructor(private booksService: BooksService) {}
+  ngOnInit() {
+    this.getBooks();
+  }
+
+  private getBooks() {
+    this.booksService.getBooks();
+  }
 }

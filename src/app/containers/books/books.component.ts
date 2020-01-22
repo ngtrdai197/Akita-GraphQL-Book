@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Book } from './state/book.model';
-import { BooksService } from './state/books.service';
-import { BooksQuery } from './state/books.query';
+import { IBook } from '@/shared/interfaces';
+import { BooksQuery } from '../state/books.query';
 
 @Component({
   selector: 'app-books',
@@ -10,19 +9,20 @@ import { BooksQuery } from './state/books.query';
   styleUrls: ['./books.component.scss'],
 })
 export class BooksComponent implements OnInit {
-  books$: Observable<Book[]>;
+  books$: Observable<IBook[]>;
+  book$: Observable<IBook>;
   private selectLoading$: Observable<boolean>;
-  constructor(
-    private readonly booksService: BooksService,
-    private readonly booksQuery: BooksQuery,
-  ) {}
+  constructor(private readonly booksQuery: BooksQuery) {}
 
   ngOnInit() {
     this.books$ = this.booksQuery.selectAll();
     this.selectLoading$ = this.booksQuery.selectLoading();
   }
 
-  public getBooks() {
-    this.booksService.getBooks();
+  getBook(name: string) {
+    this.books$ = this.booksQuery.selectAll({
+      filterBy: entity =>
+        entity.name.toLowerCase().includes(name.toLowerCase()),
+    });
   }
 }

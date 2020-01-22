@@ -1,0 +1,10 @@
+<div>
+  <input
+    type="text"
+    name="search"
+    id=""
+    placeholder="Enter your book name ..."
+    (keyup)="getBook($event.target.value)"
+  />
+</div>
+<app-book *ngFor="let book of books$ | async" [book]="book"></app-book>
