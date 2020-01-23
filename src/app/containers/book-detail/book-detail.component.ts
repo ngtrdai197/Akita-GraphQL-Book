@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BooksQuery } from '../state/books.query';
+import { BooksQuery } from '../books/state/books.query';
 import { IBook } from '@/shared/interfaces';
 import { BooksService } from '@/core/services';
 
@@ -25,14 +25,15 @@ export class BookDetailComponent implements OnInit {
     });
   }
 
-  editBook(book?: IBook) {
-    const newBook = book ? book : this.book;
-    this.bookService.updateBook({ ...newBook, price: 40 });
-    this.getBook();
+  editBook(price: number) {
+    this.bookService.updateBook({ ...this.book, price }).subscribe({
+      next: () => {
+        this.getBook();
+      },
+    });
   }
 
   private getBook() {
     this.book = this.bookQuery.getEntity(this.bookId);
-    console.log('this.book', this.book);
   }
 }

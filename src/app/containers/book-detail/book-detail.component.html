@@ -1,3 +1,8 @@
 <app-book [book]="book"></app-book>
-
-<button (click)="editBook()">Update</button>
+<div>
+  <input
+    type="number"
+    placeholder="Enter to update price of book ..."
+    (keyup.enter)="editBook($event.target.value)"
+  />
+</div>

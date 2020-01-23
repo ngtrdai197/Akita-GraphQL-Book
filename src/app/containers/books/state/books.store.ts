@@ -1,7 +1,7 @@
 import { EntityStore, EntityState, StoreConfig } from '@datorama/akita';
-import { IBook } from '../../shared/interfaces/book.interface';
 import { Injectable } from '@angular/core';
-import { CONSTANTS } from '../../core/constants';
+import { IBook } from '@/shared/interfaces';
+import { CONSTANTS } from '@/core/constants';
 
 export interface BooksState extends EntityState<IBook> {}
 

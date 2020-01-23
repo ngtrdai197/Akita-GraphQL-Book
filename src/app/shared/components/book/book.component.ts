@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { IBook } from '../../interfaces/book.interface';
 import { Router } from '@angular/router';
+import { IBook } from '@/shared/interfaces';
 
 @Component({
   selector: 'app-book',

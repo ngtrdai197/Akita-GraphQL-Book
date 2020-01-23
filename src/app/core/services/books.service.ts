@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { BooksStore } from '@/containers/state/books.store';
-import { tap } from 'rxjs/operators';
+import { BooksStore } from '@/containers/books/state/books.store';
+import { tap, timeout, catchError } from 'rxjs/operators';
 import { IBook } from '@/shared/interfaces/book.interface';
+import { Observable, throwError } from 'rxjs';
+import { setLoading } from '@datorama/akita';
+import { environment as env } from '@env/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,17 +15,37 @@ export class BooksService {
 
   getBooks() {
     this.httpClient
-      .get<IBook[]>(`${environment.HOST}/${environment.BOOK}`)
-      .pipe(tap(results => this.bookStore.set(results)))
+      .get<IBook[]>(`${env.HOST}/${env.BOOK}`)
+      .pipe(
+        timeout(3000),
+        setLoading(this.bookStore),
+        tap(books => this.bookStore.set(books)),
+      )
       .subscribe();
   }
 
-  updateBook(book: IBook) {
+  updateBook(book: IBook): Observable<IBook> {
+    return this.httpClient
+      .put<IBook>(`${env.HOST}/${env.BOOK}/update/${book.id}`, book)
+      .pipe(
+        tap(this.bookStore.update(book.id, { price: book.price })),
+        catchError(err => {
+          console.error(err.error);
+          return throwError(err.error);
+        }),
+      );
+  }
+
+  createBook(newBook: IBook) {
     this.httpClient
-      .put<IBook>(
-        `${environment.HOST}/${environment.BOOK}/update/${book.id}`,
-        book,
+      .post<IBook>(`${env.HOST}/${env.BOOK}`, newBook)
+      .pipe(
+        tap(book => this.bookStore.add(book)),
+        catchError(err => {
+          console.error(err.error);
+          return throwError(err.error);
+        }),
       )
-      .subscribe(_ => this.bookStore.update(book.id, { price: book.price }));
+      .subscribe();
   }
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IBook } from '@/shared/interfaces';
-import { BooksQuery } from '../state/books.query';
+import { BooksQuery } from './state/books.query';
+import { Order } from '@datorama/akita';
 
 @Component({
   selector: 'app-books',
@@ -15,7 +16,10 @@ export class BooksComponent implements OnInit {
   constructor(private readonly booksQuery: BooksQuery) {}
 
   ngOnInit() {
-    this.books$ = this.booksQuery.selectAll();
+    this.books$ = this.booksQuery.selectAll({
+      sortBy: 'name',
+      sortByOrder: Order.ASC,
+    });
     this.selectLoading$ = this.booksQuery.selectLoading();
   }
 
@@ -23,6 +27,8 @@ export class BooksComponent implements OnInit {
     this.books$ = this.booksQuery.selectAll({
       filterBy: entity =>
         entity.name.toLowerCase().includes(name.toLowerCase()),
+      sortBy: 'name',
+      sortByOrder: Order.ASC,
     });
   }
 }

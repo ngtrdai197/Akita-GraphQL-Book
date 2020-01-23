@@ -1,12 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FooterComponent, HeaderComponent, BookComponent } from './components';
+import { ReactiveFormsModule } from '@angular/forms';
 
-const COMPONENETS = [FooterComponent, HeaderComponent, BookComponent];
+import {
+  FooterComponent,
+  HeaderComponent,
+  BookComponent,
+  CreateBookComponent,
+} from './components';
+
+const COMPONENETS = [
+  FooterComponent,
+  HeaderComponent,
+  BookComponent,
+  CreateBookComponent,
+];
 
 @NgModule({
   declarations: [...COMPONENETS],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   exports: [...COMPONENETS],
 })
 export class SharedModule {}

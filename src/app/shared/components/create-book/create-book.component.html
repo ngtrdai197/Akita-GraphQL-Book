@@ -1,0 +1,55 @@
+<form action="" [formGroup]="createBookForm">
+  <ul>
+    <li>
+      Name:
+      <input
+        type="text"
+        placeholder="Enter your book name"
+        formControlName="name"
+      />
+    </li>
+    <li>
+      Author:
+      <input
+        type="text"
+        placeholder="Enter your book author"
+        formControlName="author"
+      />
+    </li>
+    <li>
+      Price:
+      <input
+        type="text"
+        placeholder="Enter your price of book"
+        formControlName="price"
+      />
+    </li>
+    <li>
+      Description:
+      <input
+        type="text"
+        placeholder="Enter your description of book"
+        formControlName="description"
+      />
+    </li>
+    <li>
+      <div formArrayName="genres">
+        <h3>Genres</h3>
+        <button (click)="addGenres()">Add Genres</button>
+        <div *ngFor="let item of genres.controls; let i = index">
+          <label>
+            Genres:
+            <input
+              type="text"
+              placeholder="Enter your genres of book"
+              [formControlName]="i"
+            />
+          </label>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <button [disabled]="!createBookForm.valid" (click)="createBook()">
+    Create Book
+  </button>
+</form>
