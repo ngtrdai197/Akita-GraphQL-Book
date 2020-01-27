@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { IUser } from '@/shared/interfaces';
 import { CONSTANTS } from '@/core/constants';
 
-interface SessionState {
+export interface SessionState {
   me: IUser;
   accessToken: string;
 }
