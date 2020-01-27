@@ -1,4 +1,5 @@
 import { ID } from '@datorama/akita';
+import { IUser } from './user.interface';
 
 export interface IBook {
   id: ID;
@@ -7,4 +8,6 @@ export interface IBook {
   genres: string[];
   description: string;
   price: number;
+  createdById: string;
+  createdBy?: IUser;
 }

@@ -1,0 +1,17 @@
+<p>
+  login works!
+</p>
+
+<form action="" [formGroup]="loginForm">
+  <p>
+    <label for="">username</label>
+    <input type="text" formControlName="username" />
+  </p>
+  <p>
+    <label for="">password</label>
+    <input type="password" formControlName="password" />
+  </p>
+  <p>
+    <button [disabled]="!loginForm.valid" (click)="login()">Login</button>
+  </p>
+</form>

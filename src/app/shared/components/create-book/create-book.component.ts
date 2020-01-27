@@ -19,7 +19,13 @@ export class CreateBookComponent implements OnInit {
   }
 
   createBook() {
-    this.bookService.createBook(this.createBookForm.value);
+    this.bookService.createBook(this.createBookForm.value).subscribe({
+      next: response => {
+        if (response) {
+          this.createBookForm.reset();
+        }
+      },
+    });
   }
 
   addGenres() {

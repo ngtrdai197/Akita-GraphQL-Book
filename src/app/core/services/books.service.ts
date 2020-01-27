@@ -37,15 +37,12 @@ export class BooksService {
   }
 
   createBook(newBook: IBook) {
-    this.httpClient
-      .post<IBook>(`${env.HOST}/${env.BOOK}`, newBook)
-      .pipe(
-        tap(book => this.bookStore.add(book)),
-        catchError(err => {
-          console.error(err.error);
-          return throwError(err.error);
-        }),
-      )
-      .subscribe();
+    return this.httpClient.post<IBook>(`${env.HOST}/${env.BOOK}`, newBook).pipe(
+      tap(book => this.bookStore.add(book)),
+      catchError(err => {
+        console.error(err.error);
+        return throwError(err.error);
+      }),
+    );
   }
 }

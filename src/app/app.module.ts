@@ -7,16 +7,24 @@ import { AppComponent } from './app.component';
 import { appRoutes } from './app-routing';
 import { CoreModule } from './core/core.module';
 import { environment } from '@env/environment';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorService } from './core/interceptors/http-interceptor.service';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
     CoreModule,
+    RouterModule.forRoot(appRoutes),
     environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
