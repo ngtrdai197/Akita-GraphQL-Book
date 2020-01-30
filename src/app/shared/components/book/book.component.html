@@ -1,6 +1,6 @@
-<ul (click)="bookSelected(book.id)">
+<ul>
   <li>ID: {{ book.id }}</li>
-  <li>Name: {{ book.name }}</li>
+  <li (click)="bookSelected(book.id)">Name: {{ book.name }}</li>
   <li>Author: {{ book.author }}</li>
   <li>Price: {{ book.price }}</li>
   <li>Genres: {{ book.genres }}</li>

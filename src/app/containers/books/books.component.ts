@@ -24,11 +24,6 @@ export class BooksComponent implements OnInit {
   }
 
   getBook(name: string) {
-    this.books$ = this.booksQuery.selectAll({
-      filterBy: entity =>
-        entity.name.toLowerCase().includes(name.toLowerCase()),
-      sortBy: 'name',
-      sortByOrder: Order.ASC,
-    });
+    this.books$ = this.booksQuery.getBookByName(name);
   }
 }
