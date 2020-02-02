@@ -33,12 +33,10 @@ export class AuthService {
       })
       .pipe(
         tap(session => {
-          if (session) {
-            const { accessToken, user } = session;
-            this.localStorageService.setToken(accessToken);
-            this.authStore.update({ accessToken, me: user });
-            return this.router.navigate(['']);
-          }
+          const { accessToken, user } = session;
+          this.localStorageService.setToken(accessToken);
+          this.authStore.update({ accessToken, me: user });
+          return this.router.navigate(['']);
         }),
         catchError(err => {
           console.error(err.error);
