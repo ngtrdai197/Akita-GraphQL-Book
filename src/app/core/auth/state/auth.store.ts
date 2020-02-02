@@ -4,7 +4,7 @@ import { IUser } from '@/shared/interfaces';
 import { CONSTANTS } from '@/core/constants';
 
 export interface SessionState {
-  me: IUser;
+  me: Partial<IUser>;
   accessToken: string;
 }
 

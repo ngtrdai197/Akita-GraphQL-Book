@@ -36,7 +36,7 @@ export class BooksService {
       );
   }
 
-  createBook(newBook: IBook) {
+  createBook(newBook: IBook): Observable<IBook> {
     return this.httpClient.post<IBook>(`${env.HOST}/${env.BOOK}`, newBook).pipe(
       tap(book => this.bookStore.add(book)),
       catchError(err => {

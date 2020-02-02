@@ -6,10 +6,10 @@ export interface IUser {
   password: string;
   fullName: string;
   address?: string;
-  roles: string[];
+  roles: ROLES[];
 }
 
-export enum ROLES {
+export const enum ROLES {
   ADMIN = 'ADMIN',
   USER = 'USER',
 }

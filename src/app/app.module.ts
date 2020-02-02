@@ -2,12 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
-
-import { AppComponent } from './app.component';
-import { appRoutes } from './app-routing';
-import { CoreModule } from './core/core.module';
-import { environment } from '@env/environment';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { appRoutes } from './app-routing';
+import { environment } from '@env/environment';
+import { CoreModule } from './core/core.module';
+import { AppComponent } from './app.component';
 import { HttpInterceptorService } from './core/interceptors/http-interceptor.service';
 
 @NgModule({

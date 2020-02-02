@@ -22,6 +22,7 @@ export class AppComponent implements OnInit {
   private getBooks() {
     this.booksService.getBooks();
   }
+
   private me() {
     this.authService.me().subscribe();
   }

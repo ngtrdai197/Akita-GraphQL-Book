@@ -8,7 +8,6 @@ import { IBook } from '@/shared/interfaces';
   styleUrls: ['./book.component.scss'],
 })
 export class BookComponent implements OnInit {
-  // tslint:disable-next-line: no-input-rename
   @Input('book') book: IBook;
 
   constructor(private router: Router) {}

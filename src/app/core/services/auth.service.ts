@@ -5,7 +5,7 @@ import { environment as env } from '@env/environment';
 import { tap, catchError } from 'rxjs/operators';
 import { LocalStorageService } from './local-storage.service';
 import { Router } from '@angular/router';
-import { IUser } from '@/shared/interfaces';
+import { IUser, ISession } from '@/shared/interfaces';
 import { AuthStore } from '../auth/state/auth.store';
 
 @Injectable({
@@ -27,17 +27,16 @@ export class AuthService {
 
   login({ username, password }: { username: string; password: string }) {
     this.httpClient
-      .post(`${env.HOST}/${env.AUTH.LOGIN}`, {
+      .post<ISession>(`${env.HOST}/${env.AUTH.LOGIN}`, {
         username,
         password,
       })
       .pipe(
-        tap(response => {
-          if (response) {
-            // tslint:disable-next-line:no-string-literal
-            const token = response['accessToken'];
-            this.localStorageService.setToken(token);
-            this.authStore.update({ accessToken: token });
+        tap(session => {
+          if (session) {
+            const { accessToken, user } = session;
+            this.localStorageService.setToken(accessToken);
+            this.authStore.update({ accessToken, me: user });
             return this.router.navigate(['']);
           }
         }),

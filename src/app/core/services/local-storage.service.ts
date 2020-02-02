@@ -10,7 +10,7 @@ export class LocalStorageService {
     localStorage.setItem('accessToken', token);
   }
 
-  getToken() {
+  getToken(): string {
     return localStorage.getItem('accessToken');
   }
 }
