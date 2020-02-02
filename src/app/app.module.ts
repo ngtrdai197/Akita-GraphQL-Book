@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { RouterModule, PreloadAllModules } from '@angular/router';
 import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
@@ -15,7 +15,7 @@ import { HttpInterceptorService } from './core/interceptors/http-interceptor.ser
   imports: [
     BrowserModule,
     CoreModule,
-    RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
     environment.production ? [] : AkitaNgDevtools.forRoot(),
   ],
   providers: [
