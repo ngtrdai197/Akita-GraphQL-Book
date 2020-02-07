@@ -1,7 +1,8 @@
 ### Angular CLI custom webpack config :tada:
 
 1. Install plugin _`webpack-notifier`_
-   > `npm install @angular-builders/custom-webpack`
+
+> `npm install webpack-notifier`
 
 ```javascript
 const WebpackNotifierPlugin = require('webpack-notifier');
@@ -55,7 +56,7 @@ module.exports = {
 },
 ```
 
-- This is a content when start with `dev` mode. Insted, if you want use with `pro` mode, please do the same as above (`dev` mode)
+- This is a content when start with `dev` mode. Insted, if you want use with `pro` mode, please do the same as above (`dev`) mode
 
 3. Create `@types` folder and **`graphql.d.ts`** file
 
