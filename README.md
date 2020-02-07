@@ -1,27 +1,72 @@
-# MyApp
+### Angular CLI custom webpack config :tada:
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+1. Install plugin _`webpack-notifier`_
+   > `npm install @angular-builders/custom-webpack`
 
-## Development server
+```javascript
+const WebpackNotifierPlugin = require('webpack-notifier');
+const path = require('path');
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+module.exports = {
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.scss', '.gql', '.graphql'],
+    modules: [path.resolve(__dirname), 'node_modules']
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(graphql|gql)$/,
+        exclude: /node_modules/,
+        loader: 'graphql-tag/loader'
+      }
+    ]
+  },
+  plugins: [
+    new WebpackNotifierPlugin({
+      alwaysNotify: true,
+      title: 'Akita'
+    })
+  ]
+};
+```
 
-## Code scaffolding
+2. Installation and configuration
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- > `npm install @angular-builders/custom-webpack`
 
-## Build
+###[Link github for guide](https://github.com/just-jeb/angular-builders/tree/master/packages/custom-webpack) :rocket: :rocket: :rocket:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- Inside **`angular.json`** file
 
-## Running unit tests
+```json
+"serve": {
+    "builder": "@angular-builders/custom-webpack:dev-server",
+    "options": {
+    "browserTarget": "my-app:build",
+    "customWebpackConfig": {
+        "path": "./webpack.config.js"
+    }
+    },
+    "configurations": {
+    "production": {
+        "browserTarget": "my-app:build:production"
+    }
+    }
+},
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- This is a content when start with `dev` mode. Insted, if you want use with `pro` mode, please do the same as above (`dev` mode)
 
-## Running end-to-end tests
+3. Create `@types` folder and **`graphql.d.ts`** file
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```typescript
+declare module '*.graphql' {
+  import { DocumentNode } from 'graphql';
+  const value: {
+    [key: string]: DocumentNode;
+  };
+  export = value;
+}
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+> This enables us to import graphql files, which is used to communicate with the graphql server
