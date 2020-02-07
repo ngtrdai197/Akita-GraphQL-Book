@@ -4,20 +4,27 @@ export const appRoutes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('./core/auth/auth.module').then(module => module.AuthModule),
+      import('./core/auth/auth.module').then(module => module.AuthModule)
   },
   {
     path: '',
     loadChildren: () =>
       import('./containers/books/books.module').then(
-        module => module.BooksModule,
-      ),
+        module => module.BooksModule
+      )
   },
   {
     path: 'book-detail/:bookId',
     loadChildren: () =>
       import('./containers/book-detail/book-detail.module').then(
-        module => module.BookDetailModule,
-      ),
+        module => module.BookDetailModule
+      )
   },
+  {
+    path: 'conversation',
+    loadChildren: () =>
+      import('./containers/conversation/conversation.module').then(
+        module => module.ConversationModule
+      )
+  }
 ];

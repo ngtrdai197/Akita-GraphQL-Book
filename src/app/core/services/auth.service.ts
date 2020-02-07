@@ -9,14 +9,14 @@ import { IUser, ISession } from '@/shared/interfaces';
 import { AuthStore } from '../auth/state/auth.store';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthService {
   constructor(
     private httpClient: HttpClient,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private authStore: AuthStore,
+    private authStore: AuthStore
   ) {}
 
   me(): Observable<IUser> {
@@ -29,7 +29,7 @@ export class AuthService {
     this.httpClient
       .post<ISession>(`${env.HOST}/${env.AUTH.LOGIN}`, {
         username,
-        password,
+        password
       })
       .pipe(
         tap(session => {
@@ -41,7 +41,7 @@ export class AuthService {
         catchError(err => {
           console.error(err.error);
           return throwError(err.error);
-        }),
+        })
       )
       .subscribe();
   }

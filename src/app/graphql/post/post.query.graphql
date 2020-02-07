@@ -1,0 +1,7 @@
+query fetchPostsQuery {
+  posts: fetchPosts {
+    id
+    name
+    content
+  }
+}

@@ -5,13 +5,13 @@ import { BooksService, AuthService } from './core/services';
   selector: 'app-root',
   template: `
     <router-outlet></router-outlet>
-  `,
+  `
 })
 export class AppComponent implements OnInit {
   title = 'my-app';
   constructor(
     private booksService: BooksService,
-    private authService: AuthService,
+    private authService: AuthService // private userService: UserService
   ) {}
   ngOnInit() {
     this.getBooks();

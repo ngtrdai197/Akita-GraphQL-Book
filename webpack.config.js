@@ -18,7 +18,10 @@ module.exports = {
   plugins: [
     new WebpackNotifierPlugin({
       alwaysNotify: true,
-      title: 'Akita'
+      title: 'Akita Project',
+      contentImage:
+        __dirname +
+        './src/assets/83841501_194177878448201_3470588421347475456_o.jpg'
     })
   ]
 };

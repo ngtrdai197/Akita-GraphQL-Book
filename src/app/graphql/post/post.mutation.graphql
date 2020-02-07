@@ -1,0 +1,7 @@
+mutation createPostMutation($name: String!, $content: String) {
+  createNewPost(name: $name, content: $content) {
+    id
+    name
+    content
+  }
+}

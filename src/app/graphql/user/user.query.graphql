@@ -1,0 +1,16 @@
+query fetchUsersQuery {
+  users: fetchUsers {
+    id
+    username
+    fullName
+  }
+}
+
+query meQuery {
+  me {
+    id
+    username
+    fullName
+    password
+  }
+}
