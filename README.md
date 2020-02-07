@@ -2,7 +2,8 @@
 
 1. Install plugin _`webpack-notifier`_
 
-> `npm install webpack-notifier`
+- > `npm install webpack-notifier`
+- Create `webpack.config.js` file and add content bellow into:
 
 ```javascript
 const WebpackNotifierPlugin = require('webpack-notifier');
@@ -33,9 +34,9 @@ module.exports = {
 
 2. Installation and configuration
 
-- > `npm install @angular-builders/custom-webpack`
+- **[Link github for guide](https://github.com/just-jeb/angular-builders/tree/master/packages/custom-webpack)** :rocket: :rocket: :rocket:
 
-###[Link github for guide](https://github.com/just-jeb/angular-builders/tree/master/packages/custom-webpack) :rocket: :rocket: :rocket:
+- > `npm install @angular-builders/custom-webpack`
 
 - Inside **`angular.json`** file
 
@@ -58,7 +59,7 @@ module.exports = {
 
 - This is a content when start with `dev` mode. Insted, if you want use with `pro` mode, please do the same as above (`dev`) mode
 
-3. Create `@types` folder and **`graphql.d.ts`** file
+3. Create `@types` folder and **`graphql.d.ts`** file, and add content bellow into:
 
 ```typescript
 declare module '*.graphql' {
