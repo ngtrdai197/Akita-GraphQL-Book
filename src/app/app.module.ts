@@ -9,22 +9,24 @@ import { environment } from '@env/environment';
 import { CoreModule } from './core/core.module';
 import { AppComponent } from './app.component';
 import { HttpInterceptorService } from './core/interceptors/http-interceptor.service';
+import { GraphqlModule } from './graphql.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
     CoreModule,
+    GraphqlModule,
     RouterModule.forRoot(appRoutes, { preloadingStrategy: PreloadAllModules }),
-    environment.production ? [] : AkitaNgDevtools.forRoot(),
+    environment.production ? [] : AkitaNgDevtools.forRoot()
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
-      multi: true,
-    },
+      multi: true
+    }
   ],
-  bootstrap: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
