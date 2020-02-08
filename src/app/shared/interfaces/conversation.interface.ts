@@ -11,3 +11,8 @@ export interface IConversation {
   messageIds: string[];
   messages: IMessage[];
 }
+
+export interface IMessageNode {
+  conversationId: string;
+  messages: Partial<IMessage[]>;
+}

@@ -1,0 +1,20 @@
+query conversationByIdQuery($id: String!, $limit: Int!, $skip: Int!) {
+  conversation: conversationById(id: $id) {
+    id
+    name
+    participants {
+      id
+      fullName
+    }
+    messages(limit: $limit, skip: $skip) {
+      id
+      content
+      isEdited
+      createdBy {
+        id
+        username
+        fullName
+      }
+    }
+  }
+}

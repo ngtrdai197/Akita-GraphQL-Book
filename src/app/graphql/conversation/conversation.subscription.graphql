@@ -1,0 +1,14 @@
+subscription conversationSubscription($conversationId: String!) {
+  newMessage: subscribeConversation(conversationId: $conversationId) {
+    conversationId
+    message {
+      id
+      content
+      createdBy {
+        id
+        username
+        fullName
+      }
+    }
+  }
+}

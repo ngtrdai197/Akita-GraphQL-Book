@@ -1,0 +1,9 @@
+mutation createMessageMutation(
+  $newMessage: CreateMessageInput!
+  $conversationId: String!
+) {
+  createNewMessage(newMessage: $newMessage, conversationId: $conversationId) {
+    id
+    content
+  }
+}
