@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 
 import * as messageMutationyRef from '@/graphql/message/message.mutation.graphql';
-import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

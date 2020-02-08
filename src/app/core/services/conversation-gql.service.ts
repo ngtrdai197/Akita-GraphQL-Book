@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Apollo, QueryRef } from 'apollo-angular';
+import { Apollo } from 'apollo-angular';
 import { map } from 'rxjs/operators';
 
 import * as conversationSubRef from '@graphql/conversation/conversation.subscription.graphql';
