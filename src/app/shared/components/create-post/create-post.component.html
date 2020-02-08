@@ -1,0 +1,20 @@
+<p>create-post works!</p>
+<form [formGroup]="createPostForm" (ngSubmit)="createPost()">
+  <div>
+    <label for="">Name</label>
+    <input
+      type="text"
+      formControlName="name"
+      placeholder="Enter name your post"
+    />
+  </div>
+  <div>
+    <label for="">Content</label>
+    <input
+      type="text"
+      formControlName="content"
+      placeholder="Enter content your post"
+    />
+  </div>
+  <button type="submit" [disabled]="!createPostForm.valid">Create Post</button>
+</form>

@@ -26,5 +26,12 @@ export const appRoutes: Routes = [
       import('./containers/conversation/conversation.module').then(
         module => module.ConversationModule
       )
+  },
+  {
+    path: 'posts',
+    loadChildren: () =>
+      import('./containers/posts/posts.module').then(
+        module => module.PostsModule
+      )
   }
 ];

@@ -14,19 +14,28 @@ export class PostGqlService {
       .watchQuery({
         query: postQueryRef.fetchPostsQuery
       })
-      .valueChanges.pipe(map(({ data, loading }) => ({ data, loading })));
+      .valueChanges.pipe(
+        map(({ data, loading }) => {
+          return { data, loading };
+        })
+      );
   }
 
-  createNewPost() {
+  createNewPost({ name, content }: { name: string; content: string }) {
     return this.apollo
       .mutate({
         mutation: postMutationyRef.createPostMutation,
         variables: {
-          name: 'Go lang',
-          content:
-            'Go is an open source programming language that makes it easy to build simple, reliable, and efficient software.'
+          name,
+          content
         }
       })
       .pipe(map(({ data }) => ({ data })));
+  }
+
+  getCacheApollo() {
+    return this.apollo.getClient().readQuery({
+      query: postQueryRef.fetchPostsQuery
+    });
   }
 }
