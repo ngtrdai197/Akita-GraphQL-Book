@@ -7,4 +7,6 @@ export interface IMessage {
   createdBy: IUser;
   content: string;
   isEdited: boolean;
+  createdAt: Date;
+  updatedAt: Date;
 }

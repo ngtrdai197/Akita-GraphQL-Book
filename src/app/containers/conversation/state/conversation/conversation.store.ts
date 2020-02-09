@@ -5,10 +5,12 @@ import { CONSTANTS } from '@/core/constants';
 
 export interface ConversationState {
   conversation: Partial<IConversation>;
+  conversations: Partial<IConversation[]>;
 }
 
 const createInitialState = (): ConversationState => ({
-  conversation: null
+  conversation: null,
+  conversations: []
 });
 
 @Injectable({

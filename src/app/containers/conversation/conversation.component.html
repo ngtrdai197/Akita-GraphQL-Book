@@ -1,7 +1,8 @@
 <p>conversation works!</p>
-<ul *ngFor="let item of messageNode?.messages">
+<ul *ngFor="let item of (messageNode$ | async)?.messages">
   <li>Full name: {{ item?.createdBy?.fullName }}</li>
   <li>Message: {{ item?.content }}</li>
+  <li>Time: {{ calculateTimes(item?.createdAt) }}</li>
 </ul>
 
 <app-create-message

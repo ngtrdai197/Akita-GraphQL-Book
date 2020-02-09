@@ -9,6 +9,8 @@ subscription conversationSubscription($conversationId: String!) {
         username
         fullName
       }
+      createdAt
+      updatedAt
     }
   }
 }
