@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const appRoutes: Routes = [
   {
@@ -22,6 +23,7 @@ export const appRoutes: Routes = [
   },
   {
     path: 'conversation',
+    canActivate: [AuthGuard],
     loadChildren: () =>
       import('./containers/conversation/conversation.module').then(
         module => module.ConversationModule

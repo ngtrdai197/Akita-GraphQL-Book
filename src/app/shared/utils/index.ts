@@ -1,4 +1,5 @@
 import { HashMap } from '@datorama/akita';
+export * from './format-time.utils';
 
 export function convertHashmapToArray<T>(hashMap: HashMap<T>) {
   const value: T[] = [];

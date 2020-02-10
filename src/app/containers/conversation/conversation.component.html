@@ -2,7 +2,7 @@
 <ul *ngFor="let item of (messageNode$ | async)?.messages">
   <li>Full name: {{ item?.createdBy?.fullName }}</li>
   <li>Message: {{ item?.content }}</li>
-  <li>Time: {{ calculateTimes(item?.createdAt) }}</li>
+  <li>Time: {{ formatDateTime(item?.createdAt) }}</li>
 </ul>
 
 <app-create-message
