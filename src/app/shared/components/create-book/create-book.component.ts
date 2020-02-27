@@ -5,13 +5,13 @@ import { BooksService } from '@/core/services';
 @Component({
   selector: 'app-create-book',
   templateUrl: './create-book.component.html',
-  styleUrls: ['./create-book.component.scss'],
+  styleUrls: ['./create-book.component.scss']
 })
 export class CreateBookComponent implements OnInit {
   createBookForm: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private bookService: BooksService,
+    private bookService: BooksService
   ) {}
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class CreateBookComponent implements OnInit {
         if (response) {
           this.createBookForm.reset();
         }
-      },
+      }
     });
   }
 
@@ -43,8 +43,8 @@ export class CreateBookComponent implements OnInit {
       description: ['', Validators.required],
       price: [''],
       genres: this.formBuilder.array([
-        this.formBuilder.control('', Validators.required),
-      ]),
+        this.formBuilder.control('', Validators.required)
+      ])
     });
   }
 }
