@@ -7,6 +7,12 @@ import * as conversationQueryRef from '@graphql/conversation/conversation.query.
 import { IConversation, IMessageNode } from '@/shared/interfaces';
 import { MessageNodeStore } from '@/containers/conversation/state/message-node/message-node.store';
 
+export type Paging = {
+  id: string;
+  limit: number;
+  skip: number;
+};
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,15 +22,7 @@ export class ConversationGqlService {
     private messageNodeStore: MessageNodeStore
   ) {}
 
-  loadConversation({
-    id,
-    limit,
-    skip
-  }: {
-    id: string;
-    limit: number;
-    skip: number;
-  }) {
+  loadConversation({ id, limit, skip }: Paging) {
     this.apollo
       .watchQuery({
         query: conversationQueryRef.conversationByIdQuery,
