@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, Observable } from 'rxjs';
-import { environment as env } from '@env/environment';
-import { tap, catchError } from 'rxjs/operators';
-import { LocalStorageService } from './local-storage.service';
 import { Router } from '@angular/router';
+import { tap, catchError } from 'rxjs/operators';
+
+import { environment as env } from '@env/environment';
+import { LocalStorageService } from './local-storage.service';
 import { IUser, ISession } from '@/shared/interfaces';
 import { AuthStore } from '../auth/state/auth.store';
 
@@ -44,5 +45,11 @@ export class AuthService {
         })
       )
       .subscribe();
+  }
+
+  logout() {
+    this.localStorageService.removeToken();
+    this.authStore.reset();
+    this.router.navigate(['auth']);
   }
 }
